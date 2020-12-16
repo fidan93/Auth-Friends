@@ -4,11 +4,9 @@ import Login from './components/Login'
 import FriendList from './components/FriendList'
 import PrivateRoute from './components/PrivateRoute';
 
+
 function App() {
 
-  const logout = () =>{
-    
-  }
 
   return (
     <Router>
@@ -17,9 +15,7 @@ function App() {
           <li>
             <Link to="/login">Login</Link>
           </li>
-          <li>
-            <Link onClick={logout}>Logout</Link>
-          </li>
+         
           <li>
             <Link to="/protected">Protected Page</Link>
           </li>

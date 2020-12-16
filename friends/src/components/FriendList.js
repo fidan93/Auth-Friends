@@ -1,5 +1,5 @@
 import React from 'react';
-import axiosAuth from '../utils/axiosAuth'
+import {axiosAuth} from '../utils/axiosAuth'
 
 class FriendList extends React.Component{
 
@@ -11,21 +11,35 @@ componentDidMount(){
     this.getData();
 }
 
-   getData = () => {
-   
+getData = () => {
     axiosAuth()
-    .get('/friends')
-    .then((res)=>{
-        console.log(res)
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-   } 
+      .get('/friends')
+      .then((res)=>{
+        console.log( res);
+
+        this.setState({
+          friends: res.data
+        });
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+  };
 
     render(){
         return(
-            <div>hello</div>
+         <div>
+             {this.state.friends.map(friend => {
+                 return(
+                     <div key={friend.id}>
+                         <h3>{friend.name}</h3>
+                         <p>Age:{friend.age}</p>
+                         <p>email:{friend.email}</p>
+                     </div>
+                 )
+             })}
+
+         </div>
         )
     }
 
